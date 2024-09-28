@@ -7,26 +7,15 @@ public class Program
         ConsoleKeyInfo yesNo;
         do
         {
-            Console.Clear();
-            Console.WriteLine("KALCULATOR 1.0)");
-            Console.WriteLine("1. Dodawanie");
-            Console.WriteLine("2. Odejmowanie");
-            Console.WriteLine("3. Mnożenie");
-            Console.WriteLine("4. Dzielenie");
-            Console.WriteLine("5. Reszta z dzielenia");
-            Console.WriteLine("0. Wyjście z programu");
+            ShowMenu();
             Console.Write("Wybierz opcję: ");
-
-            if (int.TryParse(Console.ReadLine(), out int choise))
+            bool czyOk = int.TryParse(Console.ReadLine(), out int choise);
+            if (czyOk)
             {
                 if (choise == 0) Environment.Exit(0);
 
                 Console.Clear();
-                Console.Write("Podaj X: ");
-                int x = int.Parse(Console.ReadLine());
-
-                Console.Write("Podaj Y: ");
-                int y = int.Parse(Console.ReadLine()!);
+                int x, y;
 
                 Calculator calc = new Calculator();
                 float result = 0;
@@ -34,37 +23,49 @@ public class Program
                 switch (choise)
                 {
                     case 1:
+                        GetXY(out x, out y);
                         result = calc.Add(x, y);
                         Console.WriteLine($"Wynik dodawania {x} oraz {y} to {result:0}");
                         break;
                     case 2:
+                        GetXY(out x, out y);
                         result = calc.Subtract(x, y);
                         Console.WriteLine($"Wynik odejmowania {x} oraz {y} to {result:0}");
                         break;
                     case 3:
+                        GetXY(out x, out y);
                         result = calc.Multiply(x, y);
                         Console.WriteLine($"Wynik mnożenia {x} oraz {y} to {result:0}");
                         break;
                     case 4:
-                        result = calc.Dividy(x, y);
-                        Console.WriteLine($"Wynik dzielenia {x} oraz {y} to {result:f}");
+                        try
+                        {
+                            GetXY(out x, out y);
+                            result = calc.Dividy(x, y);
+                            Console.WriteLine($"Wynik dzielenia {x} oraz {y} to {result:f}");
+                        }
+                        catch (Exception ex)
+                        {
+                            ShowError(ex.Message);
+                        }
+                        finally
+                        {
+                            //
+                        }
                         break;
                     case 5:
+                        GetXY(out x, out y);
                         result = calc.Modulo(x, y);
                         Console.WriteLine($"Reszta z dzielenia {x} oraz {y} to {result:f}");
                         break;
                     default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Wprowadzona wartość jest poza zakresem.");
-                        Console.ResetColor();
+                        ShowError("Wprowadzona wartość jest poza zakresem.");
                         break;
                 }
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Wprowadzona wartość jest nieprawidłowa.");
-                Console.ResetColor();
+                ShowError("Wprowadzona wartość jest nieprawidłowa.");
             }
             Console.ReadKey();
             Console.Clear();
@@ -73,5 +74,32 @@ public class Program
 
         } while (yesNo.Key != ConsoleKey.N);
 
+    }
+
+    private static void GetXY(out int x, out int y)
+    {
+        Console.Write("Podaj X: ");
+        x = int.Parse(Console.ReadLine()!);
+        Console.Write("Podaj Y: ");
+        y = int.Parse(Console.ReadLine()!);
+    }
+
+    private static void ShowMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("KALCULATOR 1.0)");
+        Console.WriteLine("1. Dodawanie");
+        Console.WriteLine("2. Odejmowanie");
+        Console.WriteLine("3. Mnożenie");
+        Console.WriteLine("4. Dzielenie");
+        Console.WriteLine("5. Reszta z dzielenia");
+        Console.WriteLine("0. Wyjście z programu");
+    }
+
+    internal static void ShowError(string msg)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(msg);
+        Console.ResetColor();
     }
 }

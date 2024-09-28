@@ -29,6 +29,11 @@
 
         internal float Dividy(int x, int y)
         {
+            if (y == 0)
+            {
+                throw new DivideByZeroException("Pamiętaj cholero! Nie dziel przez 0!");
+            }
+
             return (float)x / y;
         }
 
