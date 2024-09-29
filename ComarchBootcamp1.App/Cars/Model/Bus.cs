@@ -1,14 +1,9 @@
 ﻿namespace ComarchBootcamp1.App.Cars.Model;
 
-internal class Car : Vehicle
+internal class Bus : Vehicle
 {
     public override void Refuel(int count)
     {
         throw new NotImplementedException();
-    }
-
-    public override void Borrow(string Borrower)
-    {
-        Console.WriteLine("Metoda Borrow w klasie Car");
     }
 }
