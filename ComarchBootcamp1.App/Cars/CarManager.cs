@@ -81,6 +81,17 @@ internal class CarManager
         Console.Write("Podaj markę: ");
         vehicle.Maker = Console.ReadLine();
 
+        Console.Write("Podaj model: ");
+        vehicle.Model = Console.ReadLine();
+
+        Console.Write("Podaj rodzaj paliwa: ");
+        vehicle.GasType = Console.ReadLine();
+
+        Console.Write("Podaj pojemność silnika: ");
+        vehicle.Capacity = int.Parse(Console.ReadLine());
+
+        var repository = new VehicleRepository();
+        repository.Add(vehicle);
     }
 
     private void ShowCars()
@@ -91,6 +102,7 @@ internal class CarManager
         ConsoleTable
             .From(carList)
             .Write(Format.Default);
+        Console.ReadKey();
     }
 
     private void BorrowCar()

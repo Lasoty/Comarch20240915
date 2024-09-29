@@ -64,6 +64,17 @@ public class Program
                         CarManager cm = new CarManager();
                         cm.Start();
                         break;
+                    case 7:
+                        Console.WriteLine("Wprowadź wartość do zapisania do pliku:");
+                        string content = Console.ReadLine();
+                        File.WriteAllText("file.txt", content);
+                        Console.WriteLine("Zapisano.");
+                        break;
+                    case 8:
+                        Console.WriteLine("Zawartość pliku file.txt");
+                        string text = File.ReadAllText("file.txt");
+                        Console.WriteLine(text);
+                        break;
                     default:
                         ShowError("Wprowadzona wartość jest poza zakresem.");
                         break;
@@ -100,6 +111,8 @@ public class Program
         Console.WriteLine("4. Dzielenie");
         Console.WriteLine("5. Reszta z dzielenia");
         Console.WriteLine("6. Car manager");
+        Console.WriteLine("7. Zapis do pliku");
+        Console.WriteLine("8. Odczyt z pliku");
         Console.WriteLine("0. Wyjście z programu");
     }
 

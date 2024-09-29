@@ -12,11 +12,11 @@ namespace ComarchBootcamp1.App.Cars.Repositories;
 /// </summary>
 internal class VehicleRepository
 {
-    private static List<Vehicle> data;
+    private static List<Vehicle> data = [];
 
     public List<Vehicle> GetAll()
     {
-        return data;
+         return data;
     }
 
     public Vehicle GetVehicle(int id)
@@ -26,7 +26,9 @@ internal class VehicleRepository
 
     public void Add(Vehicle vehicle)
     {
-        int id = data.OrderByDescending(x => x.Id).First().Id;
+        int id = 0;
+        if (data.Any())
+            id = data.OrderByDescending(x => x.Id).First().Id;
         vehicle.Id = id + 1;
         data.Add(vehicle);
     }
