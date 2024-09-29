@@ -1,7 +1,45 @@
-﻿namespace ComarchBootcamp1.App
+﻿
+namespace ComarchBootcamp1.App
 {
     internal class Calculator
     {
+
+        public Calculator(int x, int y)
+        {
+            
+        }
+
+        public Calculator()
+        {
+            
+        }
+
+
+
+
+
+
+
+
+
+        public int lastValue;
+
+
+        private string lastOperation;
+
+        public string LastOperation
+        {
+            get
+            {
+                return lastOperation;
+            }
+            set
+            {
+                lastOperation = value;
+            }
+        }
+
+
         public int Add(params int[] values)
         {
             int result = 0;

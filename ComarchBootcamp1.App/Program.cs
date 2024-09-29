@@ -1,4 +1,6 @@
-﻿namespace ComarchBootcamp1.App;
+﻿using ComarchBootcamp1.App.Cars;
+
+namespace ComarchBootcamp1.App;
 
 public class Program
 {
@@ -58,6 +60,10 @@ public class Program
                         result = calc.Modulo(x, y);
                         Console.WriteLine($"Reszta z dzielenia {x} oraz {y} to {result:f}");
                         break;
+                    case 6:
+                        CarManager cm = new CarManager();
+                        cm.Start();
+                        break;
                     default:
                         ShowError("Wprowadzona wartość jest poza zakresem.");
                         break;
@@ -93,6 +99,7 @@ public class Program
         Console.WriteLine("3. Mnożenie");
         Console.WriteLine("4. Dzielenie");
         Console.WriteLine("5. Reszta z dzielenia");
+        Console.WriteLine("6. Car manager");
         Console.WriteLine("0. Wyjście z programu");
     }
 
